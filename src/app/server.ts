@@ -1,13 +1,29 @@
 import express, { Express } from "express";
 import morgan from "morgan";
+import routing from "./modules/network/routing.module";
+import mongoose from "./modules/repository/mongoose.module";
+import consoleMessage from "./modules/log/console-message.module"
 
-function main(){
+
+async function main(){
   const server: Express = express();
   const port: number = parseInt(process.env.TS_API_TEMPLATE_PORT || '3000');
 
   server.use(express.json());
   server.use(morgan('dev'));
+  routing.setRoutes(server);
 
-  server.listen(port, () => console.log(`Server listening on port ${port}`));
+  try {
+    await mongoose.connect();
+    consoleMessage.success('Database connection successful');
+    
+    server.listen(port, () => {
+      consoleMessage.success(`Server listening on port ${port}`);
+    });
+  } 
+  catch (error) {
+    consoleMessage.error(`Failed database connection`);
+  }
+
 }
 export default { main };
