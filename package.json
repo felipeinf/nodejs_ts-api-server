@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "NODE_PATH=./src nodemon src/index.ts",
     "build": "tsc",
     "start": "npm run build && NODE_PATH=./dist node dist/index.js prod",
     "test": "echo \"Error: no test specified\" && exit 1"
