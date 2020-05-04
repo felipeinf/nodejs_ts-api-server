@@ -1,9 +1,8 @@
 import express, { Express } from "express";
 import morgan from "morgan";
-import routing from "./modules/network/routing.module";
 import mongoose from "./modules/repository/mongoose.module";
 import consoleMessage from "./modules/log/console-message.module"
-
+import components from "app/components"
 
 async function main(){
   const server: Express = express();
@@ -11,7 +10,7 @@ async function main(){
 
   server.use(express.json());
   server.use(morgan('dev'));
-  routing.setRoutes(server);
+  server.use('/api', ...components);
 
   try {
     await mongoose.connect();
