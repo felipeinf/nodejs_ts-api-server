@@ -7,4 +7,8 @@ function getUsers(): DocumentQuery<User[], User, {}>{
   return repository.getUsers();
 }
 
-export default { getUsers };
+function getUser(userId: string): DocumentQuery<User[], User, {}>{
+  return repository.getUser(userId);
+}
+
+export default { getUsers, getUser };
