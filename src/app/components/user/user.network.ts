@@ -35,4 +35,17 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
+router.post('/signin', async (req: Request, res: Response) => {
+  const user: User = req.body;
+  
+  try {
+    const result: User = await controller.addUser(user);
+    response.success(req, res, result, 201);
+  }
+  catch (error) {
+    console.error(error);
+    response.error(req, res, 'Invalid information', 500);
+  }
+});
+
 export default router;
