@@ -7,4 +7,8 @@ function getUsers(): DocumentQuery<User[], User, {}>{
   return model.find();
 }
 
-export default { getUsers };
+function getUser(userId: string): DocumentQuery<User[], User, {}>{
+  return model.find({_id: userId});
+}
+
+export default { getUsers, getUser };
