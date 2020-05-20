@@ -2,7 +2,6 @@ import express, { Request, Response, Router } from "express";
 import { User } from "./user.model";
 import response from "app/modules/network/response.module";
 import controller from "./user.controller";
-import user from "./user.component";
 
 
 const router: Router = express.Router();
