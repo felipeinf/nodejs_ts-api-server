@@ -8,7 +8,7 @@ function connect(): Promise<typeof mongoose> {
     useCreateIndex: true
   }
   
-  return mongoose.connect(process.env.TS_API_TEMPLATE_MONGO_URI || '', options);
+  return mongoose.connect(`${process.env.MONGO_URI}/${process.env.MONGO_DATABASE_NAME}`, options);
 }
 
 export default { connect };
