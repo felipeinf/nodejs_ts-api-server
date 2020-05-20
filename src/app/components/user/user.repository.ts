@@ -11,4 +11,8 @@ function getUser(userId: string): DocumentQuery<User[], User, {}>{
   return model.find({_id: userId});
 }
 
-export default { getUsers, getUser };
+function addUser(user: User): Promise<User> {
+  return model.create(user);
+}
+
+export default { getUsers, getUser, addUser };
